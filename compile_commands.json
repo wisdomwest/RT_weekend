@@ -1,0 +1,18 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-O3",
+      "-std=c++17",
+      "-march=native",
+      "-DNDEBUG",
+      "-o",
+      "main",
+      "main.cc"
+    ],
+    "directory": "/home/west/raytracing/RT_weekend",
+    "file": "/home/west/raytracing/RT_weekend/main.cc",
+    "output": "/home/west/raytracing/RT_weekend/main"
+  }
+]
