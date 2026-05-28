@@ -6,6 +6,7 @@
       "-O3",
       "-std=c++17",
       "-march=native",
+      "-fopenmp",
       "-DNDEBUG",
       "-o",
       "main",
