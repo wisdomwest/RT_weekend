@@ -31,7 +31,7 @@ public:
     std::vector<color> image_data(image_width * image_height);
     int progress = 0;
 
-    #pragma omp parallel for schedule(dynamic, 1)
+#pragma omp parallel for schedule(dynamic, 1)
     for (int j = 0; j < image_height; j++) {
       for (int i = 0; i < image_width; i++) {
         color pixel_color(0, 0, 0);
@@ -41,12 +41,12 @@ public:
         }
         image_data[j * image_width + i] = pixel_samples_scale * pixel_color;
       }
-      #pragma omp atomic
+#pragma omp atomic
       progress++;
-      #pragma omp critical
+#pragma omp critical
       {
-        std::clog << "\rScanlines remaining: " << (image_height - progress) << ' '
-                  << std::flush;
+        std::clog << "\rScanlines remaining: " << (image_height - progress)
+                  << ' ' << std::flush;
       }
     }
 
@@ -121,8 +121,9 @@ private:
 
     auto ray_origin = (defocus_angle <= 0) ? center : defocus_disk_sample();
     auto ray_direction = pixel_sample - ray_origin;
+    auto ray_time = random_double();
 
-    return ray(ray_origin, ray_direction);
+    return ray(ray_origin, ray_direction, ray_time);
   }
 
   vec3 sample_square() const {
