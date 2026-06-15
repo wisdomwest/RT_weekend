@@ -10,6 +10,7 @@ public:
   vec3 normal;
   shared_ptr<material> mat;
   double t;
+  double u;
   bool front_face;
 
   void set_face_normal(const ray &r, const vec3 &outward_normal) {
@@ -30,4 +31,25 @@ public:
   virtual aabb bounding_box() const = 0;
 };
 
+class translate : public hittable {
+public:
+  bool hit(const ray &r, interval ray_t, hit_record &rec) const override {
+    // Move the ray backwards by the offset
+    ray offset_r(r.origin() - offset, r.direction(), r.time());
+
+    // Determine whether an intersection exists along the offset ray (and if so,
+    // where)
+    if (!object->hit(offset_r, ray_t, rec))
+      return false;
+
+    // Move the intersection point forwards by the offset
+    rec.p += offset;
+
+    return true;
+  }
+
+private:
+  shared_ptr<hittable> object;
+  vec3 offset;
+};
 #endif
