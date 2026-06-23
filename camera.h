@@ -18,7 +18,7 @@ public:
 
   point3 lookfrom = point3(0, 0, 0); // Point camera is looking from
   point3 lookat = point3(0, 0, -1);  // Point camera is looking at
-  vec3 vup = vec3(0, 1, 1);          // Camera-relative "up" direction
+  vec3 vup = vec3(0, 1, 0);          // Camera-relative "up" direction
 
   double defocus_angle = 0; // Variation of rays angle through each pixel
   double focus_dist = 10;   // Distance from lookfrom to plane of perfect focus
